@@ -32,19 +32,24 @@ from typing import List
 
 
 def generate_passwords(password_length: int) -> List[str]:
-    uppercase_letters = 
-    lowercase_letters = 
-    digits = 
-    special_symbols = 
-    characters = uppercase_letters + lowercase_letters + digits + special_symbols
-    possible_passwords = itertools.product(characters, repeat=)
-    password_list_joined = [ for password in possible_passwords]
-    return 
+    uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'     
+    digits = '0123456789'  
+    special_symbols = '@#$%'
+    uc_subset = uppercase_letters[0] + uppercase_letters[-1]
+    lc_subset = lowercase_letters[-3:-1]
+    digits_subset = digits[0] + digits[-1]
+    special_subset = special_symbols[0:2]
+    characters = uc_subset + lc_subset + digits_subset + special_subset
+    possible_passwords = itertools.product(characters, repeat=password_length)
+    password_list: List[str] = [''.join(password) for password in possible_passwords]
+    return password_list
+    
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     PASSWORD_LENGHT = 4
-#     password_list = generate_passwords(PASSWORD_LENGHT)
-#     print(f"Number of passwords generated: {len(password_list)}")
-#     print("First 10 passwords generated:", password_list[:10])
+if __name__ == "__main__":
+    PASSWORD_LENGHT = 4
+    password_list = generate_passwords(PASSWORD_LENGHT)
+    print(f"Number of passwords generated: {len(password_list)}")
+    print("First 10 passwords generated:", password_list[:10])

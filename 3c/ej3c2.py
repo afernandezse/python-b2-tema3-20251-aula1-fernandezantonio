@@ -36,17 +36,17 @@ with open(path / "data/books_data.json", "r") as file:
 
 calculate_reading_time: callable = lambda book: round((book["pages"] * 250) / 200)
 books_with_reading_time: List[Dict] = list(
-    map(lambda book: {**book, "reading_time": }, books)
+    map(lambda book: {**book, "reading_time":calculate_reading_time(book)}, books)
 )
 
 
 # Para probar el código, descomenta las siguientes líneas
-# save_directory: str = path / "data/output"
-# if not os.path.exists(save_directory):
-#     os.makedirs(save_directory)
+save_directory: str = path / "data/output"
+if not os.path.exists(save_directory):
+    os.makedirs(save_directory)
 
-# with open(f"{save_directory}/books_with_reading_time.json", "w") as file:
-#     json.dump({"books": books_with_reading_time}, file)
+with open(f"{save_directory}/books_with_reading_time.json", "w") as file:
+    json.dump({"books": books_with_reading_time}, file)
 
-# for book in books_with_reading_time[:3]:
-#     print(book)
+for book in books_with_reading_time[:3]:
+    print(book)

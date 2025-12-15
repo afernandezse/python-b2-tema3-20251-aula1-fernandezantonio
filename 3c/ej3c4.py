@@ -25,20 +25,19 @@ from functools import partial
 
 def apply_discount(price: float, discount: float) -> float:
     """Applies a discount to the price and returns the final price."""
-    # Write here your code
-    pass 
+    return price * (1 - discount / 100)
 
 
-vip_discount = partial(apply_discount, discount=)
-new_customer_discount = partial(apply_discount, discount=)
+vip_discount = partial(apply_discount, discount=20)
+new_customer_discount = partial(apply_discount, discount=10)
 
 
 # Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     original_price = 100
-#     vip_price = vip_discount(original_price)
-#     new_customer_price = new_customer_discount(original_price)
+if __name__ == "__main__":
+    original_price = 100
+    vip_price = vip_discount(original_price)
+    new_customer_price = new_customer_discount(original_price)
 
-#     print(f"Original Price: {original_price}")
-#     print(f"VIP Price: {vip_price}")
-#     print(f"New Customer Price: {new_customer_price}")
+    print(f"Original Price: {original_price}")
+    print(f"VIP Price: {vip_price}")
+    print(f"New Customer Price: {new_customer_price}")
